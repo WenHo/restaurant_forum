@@ -47,6 +47,10 @@
         <em><%= time_ago_in_words(comment.created_at)   %> </em>
       </p>
     </div>
+    <% if current_user.admin? %>
+      <%= link_to "Delete", restaurant_comment_path(@restaurant, comment), method: :delete %>
+    <%end%>
+
     <hr>
   <% end %>
 </div>
