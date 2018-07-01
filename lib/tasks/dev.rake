@@ -9,7 +9,8 @@ namespace :dev do
         tel: FFaker::PhoneNumber.short_phone_number,
         address: FFaker::Address.street_address,
         description: FFaker::Lorem.paragraph,
-        category: Category.all.sample
+        category: Category.all.sample,
+        image: File.open(Rails.root.join("public/seed-img/0#{rand(1..9)}.png"))
       )
     end
     puts "have created fake restaurants"
