@@ -4,6 +4,16 @@ Rails.application.routes.draw do
   root "restaurants#index" 
   resources :restaurants, only: [:index, :show] do
     resources :comments,only: [:create, :destroy]
+
+    # 瀏覽所有餐廳最新動態
+    collection do
+      get :feeds
+    end
+
+    # 瀏覽個別餐廳 Dashboard,帶入餐廳id
+    member do
+      get :dashboard
+    end
   end
   resources :categories, only: :show
   resources :users, only: [:show, :edit, :update]
