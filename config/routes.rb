@@ -10,9 +10,12 @@ Rails.application.routes.draw do
       get :feeds
     end
 
-    # 瀏覽個別餐廳 Dashboard,帶入餐廳id
+    
     member do
       get :dashboard
+      # 瀏覽個別餐廳 Dashboard,帶入餐廳id
+      post :favorite
+      post :unfavorite
     end
   end
   resources :categories, only: :show

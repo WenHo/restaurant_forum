@@ -1,6 +1,14 @@
 class User < ApplicationRecord
-	has_many :comments
+  # 建立多對多的關係，評論
+	has_many :comments, dependent: :restrict_with_error
 	has_many :restaurants, through: :comments
+
+  # 建立多對多的關係，收藏
+  has_many :favorites, dependent: :destroy
+  has_many :favorited_restaurants, through: :favorites , source: :restaurants
+  # 更改名稱，來源為model_restaurant
+  
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
