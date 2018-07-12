@@ -7,7 +7,9 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :favorited_restaurants, through: :favorites , source: :restaurants
   # 更改名稱，來源為model_restaurant
-  
+  #建立多對多關係，喜歡
+  has_many :likes, dependent: :destroy
+  has_many :liked_restaurants, through: :likes , source: :likes
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

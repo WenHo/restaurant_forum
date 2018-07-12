@@ -14,8 +14,8 @@ Rails.application.routes.draw do
     member do
       get :dashboard
       # 瀏覽個別餐廳 Dashboard,帶入餐廳id
-      post :favorite
-      post :unfavorite
+      post :favorite, :like
+      post :unfavorite, :unlike
     end
   end
   resources :categories, only: :show
