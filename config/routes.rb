@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     # 瀏覽所有餐廳最新動態
     collection do
       get :feeds
+      # Top ten
+      get :ranking
     end
 
     

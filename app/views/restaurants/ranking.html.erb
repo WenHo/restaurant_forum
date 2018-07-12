@@ -1,0 +1,28 @@
+<div class="container">
+  <ul class="nav nav-tabs">
+    <li role="presentation" ><%= link_to "首頁", root_path %></li>
+    <li role="presentation" ><%= link_to "最新動態", feeds_restaurants_path %></li>
+    <li role="presentation" class="active"><%= link_to "Top Ten", ranking_restaurants_path %></li>
+
+  </ul>
+
+
+  <h1>Top Ten</h1>
+  <div class="restaurant_rank">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">風雲榜</h3>
+      </div>
+      <div class="panel_body">
+        <% @rank_restaurants.each do |restaurant| %>
+          <h4><%= link_to restaurant.name, restaurant_path(restaurant) %></h4>
+          <p><%= restaurant.category.name %></p>
+          <p><%= restaurant.description %></p>
+          <p>收藏數：<%= restaurant.favorites_count %></p>
+          <%= render partial: "shared/favorite", locals: {restaurant: restaurant} %>
+          <hr>
+        <% end %>
+      </div> 
+    </div>
+  </div>
+</div>

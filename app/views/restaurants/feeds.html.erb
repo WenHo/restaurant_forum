@@ -2,6 +2,7 @@
   <ul class="nav nav-tabs">
     <li role="presentation" ><%= link_to "首頁", root_path %></li>
     <li role="presentation" class="active"><%= link_to "最新動態", feeds_restaurants_path %></li>
+    <li role="presentation" ><%= link_to "Top Ten", ranking_restaurants_path %></li>
   </ul>
 
 
@@ -18,9 +19,10 @@
           <p><%= restaurant.description %></p>
           <hr>
         <% end %>
-      </div> 
+        </div> 
     </div>
-
+  </div>
+  <div class="restaurant_feed">
     <div class="panel panel-default">
       <div class="panel-heading">
         <h3 class="panel-title">最新評論</h3>
