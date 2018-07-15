@@ -20,8 +20,10 @@ Rails.application.routes.draw do
       post :unfavorite, :unlike
     end
   end
+  #追蹤功能
+  resources :followships, only:[:create, :destroy]
   resources :categories, only: :show
-  resources :users, only: [:show, :edit, :update]
+  resources :users, only: [:index ,:show, :edit, :update]
   namespace :admin do
   	resources :restaurants
   	resources :categories

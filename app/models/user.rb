@@ -10,6 +10,9 @@ class User < ApplicationRecord
   #建立多對多關係，喜歡
   has_many :likes, dependent: :destroy
   has_many :liked_restaurants, through: :likes , source: :likes
+  #建立追蹤關係
+  has_many :followships, dependent: :destroy
+  has_many :following, through: :followships
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -18,5 +21,8 @@ class User < ApplicationRecord
   mount_uploader :avatar, AvatarUploader
   def admin?
     self.role == "admin"
+  end
+  def following?(user)
+    self.following.include?(user)
   end
 end

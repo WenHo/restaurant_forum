@@ -25,7 +25,6 @@ namespace :dev do
         name: user_name,
         email:"#{user_name}@example.com",
         password:"12345678"
-        )
     end
     puts "created fake_user"
     puts "#{User.count} users" 
