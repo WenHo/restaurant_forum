@@ -8,6 +8,9 @@ class UsersController < ApplicationController
   	@user = User.find(params[:id])
   	@commented_restaurants = @user.restaurants.uniq 
   	# uniq結尾>>刪除重複
+    @favorited_restaurants = @user.favorited_restaurants
+    @followings = @user.followings
+    @followers = @user.followers
   end
 
   def edit
@@ -19,6 +22,9 @@ class UsersController < ApplicationController
   def update
     @user.update(user_params)
     redirect_to user_path(@user)
+  end
+  def friend_list
+    @friends = current_user.all_friends
   end
 
   private

@@ -17,6 +17,7 @@
           <div><%= simple_format @user.intro %></div>
           <% if @user.email == current_user.email %>
             <%= link_to 'Edit Profile', edit_user_path(@user), class: "btn btn-primary" %>
+            <%= link_to 'Friend', friend_list_user_path(@user), class: "btn btn-primary" %>
           <% end %>
         </div>
 
@@ -26,30 +27,82 @@
 
       <br>
 
-      <div>
-        <!-- 顯示已評論餐廳的清單，panel包一個panel-body裡面使用row>col的layouts來顯示評論 -->
+      <div class="col-md-4">
+        <!-- 顯示followings的清單，panel包一個list-group  -->
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h3 class="panel-title"><strong><%= @commented_restaurants.count %></strong> 已評論餐廳</h3>
+            <h3 class="panel-title"><%= @followings.count %></strong> followings</h3>
           </div>
-          <div class="panel-body">
-            <div class= "link_to">
-              <% @commented_restaurants.each do |restaurant| %>
-                <%= link_to restaurant_path(restaurant) do %>
-                <div class="my-restaurant">
-                  <div>
-                    <%= image_tag restaurant.image, class: "img-responsive img-rounded" %>
-                  </div>
-                  <h5><%= restaurant.name %></h5>
-                </div>
-                <% end %>
+
+          <ul class="list-group">
+            <% @followings.each do |following| %>
+            <li class="list-group-item">
+              <%= link_to user_path(following) do %>
+              <%= image_tag(following.avatar, height: 30, width: 30, class: "img-circle") %>
+              <%= following.name %>
               <% end %>
-            </div>
+            </li>
+            <% end %>
+          </ul>
+        </div>
+        <!-- 顯示followings的清單，panel包一個list-group  -->
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title"><%= @followers.count %></strong> followers</h3>
+          </div>
+
+          <ul class="list-group">
+            <% @followers.each do |follower| %>
+            <li class="list-group-item">
+              <%= link_to user_path(follower) do %>
+              <%= image_tag(follower.avatar, height: 30, width: 30, class: "img-circle") %>
+              <%= following.name %>
+              <% end %>
+            </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+       
+        
+      <!-- 顯示已評論餐廳的清單，panel包一個panel-body裡面使用row>col的layouts來顯示評論 -->
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title"><strong><%= @commented_restaurants.count %></strong> 已評論餐廳</h3>
+        </div>
+        <div class="panel-body">
+          <div class= "link_to">
+            <% @commented_restaurants.each do |restaurant| %>
+              <%= link_to restaurant_path(restaurant) do %>
+              <div class="my-restaurant">
+                <div>
+                  <%= image_tag restaurant.image, class: "img-responsive img-rounded" %>
+                </div>
+                <h5><%= restaurant.name %></h5>
+              </div>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+        <div class="panel-heading">
+          <h3 class="panel-title"><strong><%= @favorited_restaurants.count %></strong> 收藏的餐廳</h3>
+        </div>
+        <div class="panel-body">
+          <div class= "link_to">
+            <% @favorited_restaurants.each do |restaurant| %>
+              <%= link_to restaurant_path(restaurant) do %>
+              <div class="my-restaurant">
+                <div>
+                  <%= image_tag restaurant.image, class: "img-responsive img-rounded" %>
+                </div>
+                <h5><%= restaurant.name %></h5>
+              </div>
+              <% end %>
+            <% end %>
           </div>
         </div>
       </div>
-
-
     </div>
   </div>
 </div>

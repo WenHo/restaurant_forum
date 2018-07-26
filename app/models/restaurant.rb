@@ -10,6 +10,9 @@ class Restaurant < ApplicationRecord
   # 與使用者建立關係，喜歡
   has_many :likes, dependent: :destroy
   has_many :liked_users, through: :likes, source: :user
+  # 使用者的追蹤者
+  has_many :inverse_followships, class_name:"Followship", foreign_key:"following_id"
+  has_many :followers, through: :inverse_followships, source: :user
 
   def is_favorited?(user)
     self.favorited_users.include?(user)

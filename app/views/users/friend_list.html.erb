@@ -1,0 +1,21 @@
+<div class="container">
+	<h3>好友清單</h3>
+	<ul class="nav nav-tabs">
+	  <li role="presentation" ><%= link_to "首頁", root_path %></li>
+	  <li role="presentation" ><%= link_to "最新動態", feeds_restaurants_path %></li>
+	  <li role="presentation" ><%= link_to "Top Ten", ranking_restaurants_path %></li>
+	  <li role="presentation" class="active"><%= link_to "美食達人", users_path %></li>
+	</ul>
+		
+	<ul class="list-group">
+    <% @friends.each do |friend| %>
+    <li class="list-group-item">
+      <%= link_to user_path(friend) do %>
+      <%= image_tag(friend.avatar, height: 30, width: 30, class: "img-circle") %>
+      <%= friend.name %>
+      <% end %>
+    </li>
+    <% end %>
+  </ul>
+	<br>
+</div>

@@ -22,8 +22,13 @@ Rails.application.routes.draw do
   end
   #追蹤功能
   resources :followships, only:[:create, :destroy]
+  resources :friendships, only:[:create, :destroy]
   resources :categories, only: :show
-  resources :users, only: [:index ,:show, :edit, :update]
+  resources :users, only: [:index ,:show, :edit, :update] do
+    member do 
+      get :friend_list
+    end
+  end
   namespace :admin do
   	resources :restaurants
   	resources :categories

@@ -15,6 +15,7 @@
 	        <h3><%= link_to user.name, user_path(user) %></h3>
 	        <% if user != current_user %>
 		      	<%= render partial: "shared/following", locals: {user: user} %>
+		      	<%= render partial: "shared/friend", locals: {user: user} %>
 		    	<%end%>
 	      </div>
 	    </div>
